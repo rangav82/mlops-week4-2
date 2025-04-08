@@ -9,12 +9,13 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: "3.9"
-      - name: run unit tests
-        run: python -m test 2>&1 > test_output.txt
       - uses: iterative/setup-cml@v2
       - name: Train model
         run: |
+          pip install -r requirements.txt
           python train.py
+      - name: run unit tests
+        run: python -m test 2>&1 > test_output.txt
       - name: Create CML report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
