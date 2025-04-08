@@ -16,7 +16,7 @@ jobs:
         run: |
           python train.py
       - name: Create CML report
-      - env:
+        env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "test output" > report.md
