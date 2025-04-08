@@ -10,12 +10,10 @@ jobs:
         with:
           python-version: "3.9"
       - uses: iterative/setup-cml@v2
-      - name: Train model
+      - name: run unit tests
         run: |
           pip install -r requirements.txt
-          python train.py
-      - name: run unit tests
-        run: python -m test 2>&1 > test_output.txt
+          python -m test 2>&1 > test_output.txt
       - name: Create CML report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
