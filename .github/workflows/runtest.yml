@@ -9,24 +9,22 @@ jobs:
     steps:
       -uses: action/checkout@v3
       -uses: action/setup-python@v4
-        with:
-          python-version: "3.9"
+       with:
+         python-version: "3.9"
       -name: run unit tests
-        run: python -m test 2>&1 > test_output.txt
+       run: python -m test 2>&1 > test_output.txt
       -uses: iterative/setup-cml@v2
       -name: Train model
-        run: |
-          python train.py
+       run: |
+         python train.py
       -name: Create CML report
       -env:
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "test output" > report.md
-          echo "\`\`\`" >> report.md
-          cat test_output.txt >> report.md
-          echo "\`\`\`" > report.md
-          echo "metrics from training" >> report.md
-          cat metrics.csv >> report.md
-          cml comment create --publish report.md
-
-
+         REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       run: |
+         echo "test output" > report.md
+         echo "\`\`\`" >> report.md
+         cat test_output.txt >> report.md
+         echo "\`\`\`" > report.md
+         echo "metrics from training" >> report.md
+         cat metrics.csv >> report.md
+         cml comment create --publish report.md
