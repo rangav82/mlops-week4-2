@@ -1,4 +1,4 @@
-name: Sanity test
+name: Sanity test 2
 on:
   workflow_dispatch:
 permissions:
